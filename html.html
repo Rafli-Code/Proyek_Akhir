@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bahasa Banjar - Budaya Kalimantan Selatan</title>
+    <style>
+        /* CSS Styling */
+        :root {
+            --primary: #2c3e50;
+            --secondary: #e74c3c;
+            --accent: #f39c12;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        nav {
+            background-color: var(--secondary);
+            padding: 0.5rem 0;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin: 0 1rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+        
+        nav ul li a.active {
+            background-color: var(--accent);
+            font-weight: bold;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        h1, h2, h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        /* Game Styles */
+        .game-container {
+            text-align: center;
+        }
+        
+        .game-board {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 1rem;
+            margin: 2rem auto;
+            max-width: 900px;
+        }
+        
+        .card {
+            background-color: var(--primary);
+            color: white;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+        }
+        
+        .card.flipped {
+            background-color: var(--light);
+            color: var(--dark);
+        }
+        
+        .card.matched {
+            background-color: var(--accent);
+            cursor: default;
+        }
+        
+        .score-board {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 1rem;
+        }
+        
+        .score {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        
+        button {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #c0392b;
+        }
+        
+        .difficulty-buttons {
+            margin: 1rem 0;
+        }
+        
+        .difficulty-buttons button {
+            margin: 0 0.5rem;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .game-board {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 0.3rem 0;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .game-board {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .card {
+                height: 80px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Bahasa <span>Banjar</span></div>
+        <p>Melestarikan Budaya dan Bahasa Kalimantan Selatan</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#" class="active" id="nav-sejarah">Sejarah</a></li>
+            <li><a href="#" id="nav-game">Game Mencocokan Kata</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <!-- Sejarah Section -->
+        <section id="sejarah-section">
+            <h1>Sejarah Bahasa Banjar</h1>
+            <p>Bahasa Banjar adalah bahasa yang dituturkan oleh suku Banjar di Kalimantan Selatan, Indonesia. Bahasa ini memiliki sejarah panjang dan merupakan salah satu bahasa daerah yang penting di Indonesia.</p>
+            
+            <h2>Kosakata Bahasa Banjar</h2>
+            <table>
+                <tr>
+                    <th>Indonesia</th>
+                    <th>Banjar</th>
+                </tr>
+                <tr>
+                    <td>Selamat pagi</td>
+                    <td>Salamat pagi</td>
+                </tr>
+                <tr>
+                    <td>Terima kasih</td>
+                    <td>Tarima kasih</td>
+                </tr>
+                <tr>
+                    <td>Saya</td>
+                    <td>Ulah</td>
+                </tr>
+                <tr>
+                    <td>Kamu</td>
+                    <td>Ikam</td>
+                </tr>
+                <tr>
+                    <td>Makan</td>
+                    <td>Makan</td>
+                </tr>
+                <tr>
+                    <td>Minum</td>
+                    <td>Inum</td>
+                </tr>
+                <tr>
+                    <td>Rumah</td>
+                    <td>Rumah</td>
+                </tr>
+                <tr>
+                    <td>Air</td>
+                    <td>Banyu</td>
+                </tr>
+                <tr>
+                    <td>Nasi</td>
+                    <td>Lauk</td>
+                </tr>
+                <tr>
+                    <td>Ikan</td>
+                    <td>Iwak</td>
+                </tr>
+                <tr>
+                    <td>Pergi</td>
+                    <td>Tagal</td>
+                </tr>
+                <tr>
+                    <td>Datang</td>
+                    <td>Datang</td>
+                </tr>
+                <tr>
+                    <td>Besar</td>
+                    <td>Ganal</td>
+                </tr>
+                <tr>
+                    <td>Kecil</td>
+                    <td>Halus</td>
+                </tr>
+                <tr>
+                    <td>Panas</td>
+                    <td>Angat</td>
+                </tr>
+                <tr>
+                    <td>Dingin</td>
+                    <td>Isin</td>
+                </tr>
+            </table>
+        </section>
+        
+        <!-- Game Section -->
+        <section id="game-section" class="hidden">
+            <div class="game-container">
+                <h1>Game Mencocokan Kata Bahasa Banjar</h1>
+                <p>Cocokkan kata dalam Bahasa Indonesia dengan terjemahannya dalam Bahasa Banjar!</p>
+                
+                <div class="difficulty-buttons">
+                    <button id="easy-btn">Mudah (8 pasang)</button>
+                    <button id="medium-btn">Sedang (12 pasang)</button>
+                    <button id="hard-btn">Sulit (16 pasang)</button>
+                </div>
+                
+                <div class="score-board">
+                    <div class="score">Percobaan: <span id="attempts">0</span></div>
+                    <div class="score">Pasangan Ditemukan: <span id="matches">0</span>/<span id="total-pairs">8</span></div>
+                </div>
+                
+                <div class="game-board" id="game-board">
+                    <!-- Kartu akan diisi oleh JavaScript -->
+                </div>
+                
+                <button id="reset-btn">Ulangi Game</button>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <p>&copy; 2023 Website Bahasa Banjar - Pelestarian Budaya Kalimantan Selatan</p>
+    </footer>
+
+    <script>
+        // JavaScript untuk navigasi dan game
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navigasi antara section
+            const navSejarah = document.getElementById('nav-sejarah');
+            const navGame = document.getElementById('nav-game');
+            const sejarahSection = document.getElementById('sejarah-section');
+            const gameSection = document.getElementById('game-section');
+            
+            navSejarah.addEventListener('click', function(e) {
+                e.preventDefault();
+                sejarahSection.classList.remove('hidden');
+                gameSection.classList.add('hidden');
+                navSejarah.classList.add('active');
+                navGame.classList.remove('active');
+            });
+            
+            navGame.addEventListener('click', function(e) {
+                e.preventDefault();
+                sejarahSection.classList.add('hidden');
+                gameSection.classList.remove('hidden');
+                navSejarah.classList.remove('active');
+                navGame.classList.add('active');
+            });
+            
+            // Game Logic
+            const allWordPairs = [
+                { indonesia: 'Selamat pagi', banjar: 'Salamat pagi' },
+                { indonesia: 'Terima kasih', banjar: 'Tarima kasih' },
+                { indonesia: 'Saya', banjar: 'Ulah' },
+                { indonesia: 'Kamu', banjar: 'Ikam' },
+                { indonesia: 'Makan', banjar: 'Makan' },
+                { indonesia: 'Minum', banjar: 'Inum' },
+                { indonesia: 'Rumah', banjar: 'Rumah' },
+                { indonesia: 'Air', banjar: 'Banyu' },
+                { indonesia: 'Nasi', banjar: 'Lauk' },
+                { indonesia: 'Ikan', banjar: 'Iwak' },
+                { indonesia: 'Pergi', banjar: 'Tagal' },
+                { indonesia: 'Datang', banjar: 'Datang' },
+                { indonesia: 'Besar', banjar: 'Ganal' },
+                { indonesia: 'Kecil', banjar: 'Halus' },
+                { indonesia: 'Panas', banjar: 'Angat' },
+                { indonesia: 'Dingin', banjar: 'Isin' },
+                { indonesia: 'Pisang', banjar: 'Pisang' },
+                { indonesia: 'Ayam', banjar: 'Hayam' },
+                { indonesia: 'Sapi', banjar: 'Sapi' },
+                { indonesia: 'Kambing', banjar: 'Kambing' },
+                { indonesia: 'Hutan', banjar: 'Hutan' },
+                { indonesia: 'Sungai', banjar: 'Sungai' },
+                { indonesia: 'Laut', banjar: 'Laut' },
+                { indonesia: 'Gunung', banjar: 'Gunung' },
+                { indonesia: 'Buku', banjar: 'Buku' },
+                { indonesia: 'Pulpen', banjar: 'Pulpen' },
+                { indonesia: 'Meja', banjar: 'Meja' },
+                { indonesia: 'Kursi', banjar: 'Kursi' },
+                { indonesia: 'Pintu', banjar: 'Pintu' },
+                { indonesia: 'Jendela', banjar: 'Jandila' },
+                { indonesia: 'Kakak', banjar: 'Kakak' },
+                { indonesia: 'Adik', banjar: 'Ading' },
+                { indonesia: 'Ayah', banjar: 'Ayah' },
+                { indonesia: 'Ibu', banjar: 'Uma' },
+                { indonesia: 'Kakek', banjar: 'Aki' },
+                { indonesia: 'Nenek', banjar: 'Nini' }
+            ];
+            
+            let currentWordPairs = [];
+            let cards = [];
+            let flippedCards = [];
+            let matchedPairs = 0;
+            let attempts = 0;
+            let gameBoard = document.getElementById('game-board');
+            let attemptsDisplay = document.getElementById('attempts');
+            let matchesDisplay = document.getElementById('matches');
+            let totalPairsDisplay = document.getElementById('total-pairs');
+            let resetBtn = document.getElementById('reset-btn');
+            let easyBtn = document.getElementById('easy-btn');
+            let mediumBtn = document.getElementById('medium-btn');
+            let hardBtn = document.getElementById('hard-btn');
+            
+            function initGame(difficulty = 'easy') {
+                // Reset game state
+                cards = [];
+                flippedCards = [];
+                matchedPairs = 0;
+                attempts = 0;
+                attemptsDisplay.textContent = attempts;
+                gameBoard.innerHTML = '';
+                
+                // Pilih jumlah pasangan berdasarkan tingkat kesulitan
+                let pairsCount = 8;
+                if (difficulty === 'medium') pairsCount = 12;
+                if (difficulty === 'hard') pairsCount = 16;
+                
+                // Pilih pasangan kata secara acak dari semua kemungkinan
+                currentWordPairs = shuffleArray([...allWordPairs]).slice(0, pairsCount);
+                totalPairsDisplay.textContent = pairsCount;
+                matchesDisplay.textContent = matchedPairs;
+                
+                // Duplicate word pairs to create cards
+                let gameCards = [];
+                currentWordPairs.forEach(pair => {
+                    gameCards.push({ text: pair.indonesia, type: 'indonesia', pair: pair.banjar });
+                    gameCards.push({ text: pair.banjar, type: 'banjar', pair: pair.indonesia });
+                });
+                
+                // Shuffle cards
+                gameCards = shuffleArray(gameCards);
+                
+                // Adjust grid based on difficulty
+                if (difficulty === 'easy') {
+                    gameBoard.style.gridTemplateColumns = 'repeat(4, 1fr)';
+                } else if (difficulty === 'medium') {
+                    gameBoard.style.gridTemplateColumns = 'repeat(4, 1fr)';
+                } else {
+                    gameBoard.style.gridTemplateColumns = 'repeat(4, 1fr)';
+                }
+                
+                // Create card elements
+                gameCards.forEach((card, index) => {
+                    const cardElement = document.createElement('div');
+                    cardElement.classList.add('card');
+                    cardElement.dataset.index = index;
+                    cardElement.dataset.text = card.text;
+                    cardElement.dataset.type = card.type;
+                    cardElement.dataset.pair = card.pair;
+                    cardElement.addEventListener('click', flipCard);
+                    
+                    gameBoard.appendChild(cardElement);
+                    cards.push({
+                        element: cardElement,
+                        text: card.text,
+                        type: card.type,
+                        pair: card.pair,
+                        flipped: false,
+                        matched: false
+                    });
+                });
+            }
+            
+            function shuffleArray(array) {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]];
+                }
+                return array;
+            }
+            
+            function flipCard() {
+                const cardIndex = parseInt(this.dataset.index);
+                const card = cards[cardIndex];
+                
+                // Jangan biarkan kartu yang sudah cocok atau sudah terbuka diklik lagi
+                if (card.flipped || card.matched || flippedCards.length >= 2) {
+                    return;
+                }
+                
+                // Balik kartu
+                card.flipped = true;
+                this.classList.add('flipped');
+                this.textContent = card.text;
+                flippedCards.push(card);
+                
+                // Jika dua kartu terbuka, periksa kecocokan
+                if (flippedCards.length === 2) {
+                    attempts++;
+                    attemptsDisplay.textContent = attempts;
+                    
+                    if (flippedCards[0].pair === flippedCards[1].text && flippedCards[0].type !== flippedCards[1].type) {
+                        // Cocok
+                        flippedCards[0].matched = true;
+                        flippedCards[1].matched = true;
+                        flippedCards[0].element.classList.add('matched');
+                        flippedCards[1].element.classList.add('matched');
+                        matchedPairs++;
+                        matchesDisplay.textContent = matchedPairs;
+                        
+                        // Kosongkan flippedCards setelah delay kecil
+                        setTimeout(() => {
+                            flippedCards = [];
+                            
+                            // Periksa apakah game selesai
+                            if (matchedPairs === currentWordPairs.length) {
+                                setTimeout(() => {
+                                    alert(`Selamat! Anda menyelesaikan game dengan ${attempts} percobaan!`);
+                                }, 500);
+                            }
+                        }, 500);
+                    } else {
+                        // Tidak cocok, balik kembali setelah delay
+                        setTimeout(() => {
+                            flippedCards[0].flipped = false;
+                            flippedCards[1].flipped = false;
+                            flippedCards[0].element.classList.remove('flipped');
+                            flippedCards[1].element.classList.remove('flipped');
+                            flippedCards[0].element.textContent = '';
+                            flippedCards[1].element.textContent = '';
+                            flippedCards = [];
+                        }, 1000);
+                    }
+                }
+            }
+            
+            // Event listeners
+            resetBtn.addEventListener('click', function() {
+                initGame(getCurrentDifficulty());
+            });
+            
+            easyBtn.addEventListener('click', function() {
+                initGame('easy');
+            });
+            
+            mediumBtn.addEventListener('click', function() {
+                initGame('medium');
+            });
+            
+            hardBtn.addEventListener('click', function() {
+                initGame('hard');
+            });
+            
+            function getCurrentDifficulty() {
+                const pairs = currentWordPairs.length;
+                if (pairs <= 8) return 'easy';
+                if (pairs <= 12) return 'medium';
+                return 'hard';
+            }
+            
+            // Inisialisasi game pertama kali
+            initGame();
+        });
+    </script>
+</body>
+</html>
